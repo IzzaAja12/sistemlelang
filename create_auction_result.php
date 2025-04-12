@@ -62,60 +62,51 @@
             exit();
         }
 
-        // Check if the end date is before today
-        $today = date("Y-m-d H:i:s");
-        if ($_POST['auctionEndDate'] < $today) {
-            echo '<div class="alert alert-danger mt-3" role="alert">Error: End date cannot be before today.</div>';
-            db_disconnect($connection);
-            exit();
-        }
+      // Cek apakah tanggal akhir sebelum hari ini
+$today = date("Y-m-d H:i:s");
+if ($_POST['auctionEndDate'] < $today) {
+    db_disconnect($connection);
+    header("location: create_auction.php?messageForm=Tanggal akhir tidak boleh sebelum hari ini");
+    exit();
+}
 
-        // ************************ check photo  ************************ 
+// ************************ cek foto ************************ 
 
-        // File upload handling
-        # echo $_FILES["image"]["name"];
+$targetDirectory = "photos/";
+$targetFile = $targetDirectory . basename($_FILES["image"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-        $targetDirectory = "photos/";
-        $targetFile = $targetDirectory . basename($_FILES["image"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+// Cek apakah file beneran gambar
+$check = getimagesize($_FILES["image"]["tmp_name"]);
+if ($check === false) {
+    db_disconnect($connection);
+    header("location: create_auction.php?messageForm=File yang diunggah bukan gambar");
+    exit();
+}
 
-        // Check if the file is an actual image
-        $check = getimagesize($_FILES["image"]["tmp_name"]);
-        if ($check === false) {
-            echo '<div class="alert alert-danger mt-3" role="alert">Error: The uploaded file is not an image.</div>';
-            $uploadOk = 0;
-        }
+// Cek ukuran file (misalnya batas 500KB)
+if ($_FILES["image"]["size"] > 1000000) {
+    db_disconnect($connection);
+    header("location: create_auction.php?messageForm=Ukuran file terlalu besar (maksimal 1MB)");
+    exit();
+}
 
-        // Check file size (adjust the limit as needed)
-        if ($_FILES["image"]["size"] > 500000) {
-            echo '<div class="alert alert-danger mt-3" role="alert">Error: The uploaded file is too large.</div>';
-            $uploadOk = 0;
-        }
+// Format file yang diizinkan
+$allowedExtensions = ['jpg', 'jpeg', 'png'];
+if (!in_array($imageFileType, $allowedExtensions)) {
+    db_disconnect($connection);
+    header("location: create_auction.php?messageForm=Format file tidak valid. Hanya jpg, jpeg, dan png yang diperbolehkan");
+    exit();
+}
 
-        // Allow certain file formats (adjust as needed)
-        $allowedExtensions = ['jpg', 'jpeg', 'png'];
-        if (!in_array($imageFileType, $allowedExtensions)) {
-            echo '<div class="alert alert-danger mt-3" role="alert">Error: Invalid file format. Allowed formats: jpg, jpeg, png.</div>';
-            $uploadOk = 0;
-        }
+// Upload file
+if (!move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
+    db_disconnect($connection);
+    header("location: create_auction.php?messageForm=Gagal mengunggah file");
+    exit();
+}
 
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo '<div class="alert alert-danger mt-3" role="alert">Error: File not uploaded.</div>';
-            db_disconnect($connection);
-            exit();
-        } else {
-            // Move the uploaded file to the target directory
-            if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
-                echo '<div class="alert alert-success mt-3" role="alert">File uploaded successfully!</div>';
-            } else {
-                echo '<div class="alert alert-danger mt-3" role="alert">Error uploading file.</div>';
-                db_disconnect($connection);
-                exit();
-            }
-        }
-        
 
         // **************************************************************
 
@@ -165,7 +156,7 @@
     // Perform validation or additional processing if needed
     // *****************************************************
 
-    $filePath = "/" . "photos/" . basename($_FILES["image"]["name"]);
+    $filePath =  "photos/" . basename($_FILES["image"]["name"]);
     #echo 'File path = ' . $filePath;
 
     // Insert data into the database
@@ -219,11 +210,13 @@ if ($item_result && $auction_result) {
     $listingLink = "listing.php?item_id=$item_id";
 
     // Display the success message with the link
-    echo '<div class="text-center">Auction successfully created! <a href="' . $listingLink . '">View your new listing.</a></div>';
-    
+    header("location: mylistings.php?message=Berhasil menambahkan item lelang");
+    exit();
 
 } else {
-    echo '<div class="text-center">Error creating auction. Please try again.</div>';
+    header("location: create_auction.php?messageForm=Gagal menambahkan item lelang");
+    exit();
+
 }
 
 

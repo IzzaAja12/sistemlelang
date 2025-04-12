@@ -20,16 +20,11 @@ $user = db_fetch_single($result);
 db_free_result($result);
 db_disconnect($connection);
 
-
-
 function updateUserField($field, $new_value, $user_id) {
     $connection = db_connect();
-
     $update_query = "UPDATE users SET $field = '$new_value' WHERE user_id = '$user_id'";
     $stmt = db_query($connection, $update_query);
-
     confirm_result_set($stmt);
-
     db_free_result($stmt);
     db_disconnect($connection);
 }
@@ -52,100 +47,153 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (isset($_POST['new_password']) && $_POST['new_password'] != '') {
         updateUserField('password', $_POST['new_password'], $user_id);
     }
-
 }
 ?>
 
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Header Section -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Welcome, <?php echo $user['first_name']; ?>! 👋</h1>
+        <p class="text-gray-600">Manage your account and activities</p>
+    </div>
 
+    <!-- Activities Section -->
+    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-indigo-600">Your Activities</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <?php if ($user['role'] == 0) : ?>
+                <?php
+                    $connection = db_connect();
+                    $stmt = "SELECT total_ratings, average_rating FROM users WHERE user_id = '$user_id'";
+                    $rating_call = db_query($connection, $stmt);
+                    confirm_result_set($rating_call);
+                    $rating = db_fetch_single($rating_call);
+                    $totalRatings = $rating["total_ratings"];
+                    $userRating = $rating["average_rating"];
+                    db_free_result($rating_call);
+                    db_disconnect($connection);
+                ?>
+                
+                <!-- Seller Activities -->
+                <a href="browse.php" class="p-4 border rounded-lg hover:border-indigo-400 transition-colors">
+                    <div class="font-medium">Browse Listings</div>
+                    <p class="text-sm text-gray-500">Explore current auctions</p>
+                </a>
+                <a href="mylistings.php" class="p-4 border rounded-lg hover:border-indigo-400 transition-colors">
+                    <div class="font-medium">My Listings</div>
+                    <p class="text-sm text-gray-500">Manage your active auctions</p>
+                </a>
+                <a href="create_auction.php" class="p-4 border rounded-lg hover:border-indigo-400 transition-colors">
+                    <div class="font-medium">Create New Auction</div>
+                    <p class="text-sm text-gray-500">Start selling your items</p>
+                </a>
+                
+                <!-- Rating Section -->
+                <div class="p-4 border rounded-lg bg-indigo-50 border-indigo-200">
+                    <div class="font-medium">Seller Rating</div>
+                    <?php if ($totalRatings == 0) : ?>
+                        <p class="text-sm text-gray-500">No ratings yet</p>
+                    <?php else : ?>
+                        <div class="flex items-center mt-2">
+                            <div class="text-2xl font-bold text-indigo-600"><?php echo number_format($userRating, 1); ?></div>
+                            <div class="ml-2 text-yellow-400">
+                                <?php for ($i = 0; $i < floor($userRating); $i++) : ?>
+                                    ★
+                                <?php endfor; ?>
+                            </div>
+                            <span class="text-sm text-gray-500 ml-2">(<?php echo $totalRatings; ?> ratings)</span>
+                        </div>
+                    <?php endif; ?>
+                </div>
 
-<div class="container mt-5">
-    <h2 class="my-3">Welcome, <?php echo $user['first_name']; ?>!</h2>
-    <p>What would you like to do today?</p>
-    <?php
-        if ($user['role'] == 0) {
+            <?php elseif ($user['role'] == 1) : ?>
+                <!-- Buyer Activities -->
+                <a href="browse.php" class="p-4 border rounded-lg hover:border-indigo-400 transition-colors">
+                    <div class="font-medium">Browse Listings</div>
+                    <p class="text-sm text-gray-500">Find items to bid on</p>
+                </a>
+                <a href="mybids.php" class="p-4 border rounded-lg hover:border-indigo-400 transition-colors">
+                    <div class="font-medium">My Bids</div>
+                    <p class="text-sm text-gray-500">Track your active bids</p>
+                </a>
+                <a href="watchlist.php" class="p-4 border rounded-lg hover:border-indigo-400 transition-colors">
+                    <div class="font-medium">Watchlist</div>
+                    <p class="text-sm text-gray-500">View saved items</p>
+                </a>
+                <a href="recommendations.php" class="p-4 border rounded-lg hover:border-indigo-400 transition-colors">
+                    <div class="font-medium">Recommendations</div>
+                    <p class="text-sm text-gray-500">Personalized suggestions</p>
+                </a>
+                <a href="won_auctions.php" class="p-4 border rounded-lg hover:border-indigo-400 transition-colors">
+                    <div class="font-medium">Won Auctions</div>
+                    <p class="text-sm text-gray-500">Manage your purchases</p>
+                </a>
+            <?php endif; ?>
+        </div>
+    </div>
 
-            $connection = db_connect();
-            $stmt = "SELECT total_ratings, average_rating FROM users WHERE user_id = '$user_id'";
-            $rating_call = db_query($connection, $stmt);
-            confirm_result_set($rating_call);
+    <!-- Profile Update Section -->
+    <div class="bg-white rounded-xl shadow-md p-6">
+        <h2 class="text-xl font-semibold mb-6 text-indigo-600">Profile Settings</h2>
+        <form method="post" action="" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- First Name -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">First Name</label>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-600"><?php echo $user['first_name']; ?></span>
+                        <input type="text" name="new_first_name" 
+                               class="flex-1 mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+                                      focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                               placeholder="New first name">
+                    </div>
+                </div>
 
-            $rating = db_fetch_single($rating_call);
+                <!-- Last Name -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Last Name</label>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-600"><?php echo $user['last_name']; ?></span>
+                        <input type="text" name="new_last_name" 
+                               class="flex-1 mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+                                      focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                               placeholder="New last name">
+                    </div>
+                </div>
 
-            $totalRatings = $rating["total_ratings"];
-            $userRating = $rating["average_rating"];
+                <!-- Email -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Email</label>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-600"><?php echo $user['email']; ?></span>
+                        <input type="email" name="new_email" 
+                               class="flex-1 mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+                                      focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                               placeholder="New email">
+                    </div>
+                </div>
 
-            db_free_result($rating_call);
-            db_disconnect($connection);
+                <!-- Password -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Password</label>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-gray-600">••••••••</span>
+                        <input type="password" name="new_password" 
+                               class="flex-1 mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+                                      focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                               placeholder="New password">
+                    </div>
+                </div>
+            </div>
 
-            echo '<h3>Selling Activites</h3>';
-
-            $browse = "browse.php";
-            $listings = "mylistings.php";
-            $auction = "create_auction.php";
-
-            echo '<li><a href="' . $browse . '">Browse Listings</a></li>';
-            echo '<li><a href="' . $listings . '">See My Current Listings</a></li>';
-            echo '<li><a href="' . $auction . '">Create a New Auction</a></li>';
-            echo '<br>';
-            echo '<h3>Your Current Rating is </h3>';
-            if ($totalRatings == 0) {
-                echo "You haven't been rated yet";
-            } else {
-                echo $userRating;
-            }
-            echo '<br>';
-            echo '<br>';
-        } elseif ($user['role'] == 1) {
-            echo '<h3>Buying Activites</h3>';
-
-            $browse = "browse.php";
-            $bids = "mybids.php.php";
-            $watchlist = "watchlist.php";
-            $recommendations = "recommendations.php";
-            $won_auctions = "won_auctions.php";
-
-            echo '<li><a href="' . $browse . '">Browse Listings</a></li>';
-            echo '<li><a href="' . $bids . '">See My Current Bids</a></li>';
-            echo '<li><a href="' . $watchlist . '">Check Out My Watchlist</a></li>';
-            echo '<li><a href="' . $recommendations . '">Look At Recommended Items</a></li>';
-            echo '<li><a href="' . $won_auctions . '">View Won Auctions and Rate Sellers</a></li>';
-            echo '<br>';
-        };
-    ?> 
-    <h3>Update Profile Information</h3>
-    <form method="post" action="">
-        <table>
-            <tr>
-                <th>First Name</th>
-                <td><?php echo $user['first_name']?></td>
-                <td>
-                    <input type="text" name="new_first_name" placeholder="Change First Name">
-                </td>
-            </tr>
-            <tr>
-                <th>Last Name</th>
-                <td><?php echo $user['last_name']?></td>
-                <td>
-                    <input type="text" name="new_last_name" placeholder="Change Last Name">
-                </td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td><?php echo $user['email']?></td>
-                <td>
-                    <input type="text" name="new_email" placeholder="Change Email">
-                </td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td><?php echo $user['password']?></td>
-                <td>
-                    <input type="text" name="new_password" placeholder="Change Password">
-                </td>
-            </tr>
-        </table>
-
-        <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
-        <input type="submit" name="submit" value="Update">
-    </form>
+            <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
+            <button type="submit" name="submit" 
+                    class="w-full md:w-auto px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white 
+                           rounded-lg transition-colors font-medium">
+                Update Profile
+            </button>
+        </form>
+    </div>
 </div>
+
+<?php include_once("footer.php"); ?>

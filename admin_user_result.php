@@ -20,25 +20,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $query = "UPDATE Users SET email = '$email', first_name = '$first_name', last_name = '$last_name' WHERE user_id = $user_id";
 
         if (db_query($connection, $query)) {
-            echo "<div>User updated successfully.</div>";
-            header("Refresh: 2; URL=admin_users.php");
+            header("Location: admin_users.php?message=berhasil merubah data user");
+
         } else {
-            echo "Error updating user";
+            header("Location: admin_users.php?message=gagal merubah data user");
+
         }
     } elseif ($action == 'delete') {
         // Delete query
         $query = "DELETE FROM Users WHERE user_id = $user_id";
 
         if (db_query($connection, $query)) {
-            echo "<div>User deleted successfully.</div>";
-            header("Refresh: 2; URL=admin_users.php");
+            header("Location: admin_users.php?message=berhasil menghapus data user");
+
         } else {
-            echo "Error deleting user";
+            header("Location: admin_users.php?message=gagal menghapus data user");
+
         }
     }
 
     db_disconnect($connection);
 } else {
-    header("Location: admin_users.php");
+    header("Location: admin_users.php?message=berhasil merubah data user");
 }
 ?>

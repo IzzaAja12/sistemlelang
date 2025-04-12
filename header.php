@@ -1,118 +1,158 @@
 <?php
-
-// FIXME: At the moment, I've allowed these values to be set manually.
-// But eventually, with a database, these should be set automatically
-// ONLY after the user's login credentials have been verified via a 
-// database query.
 session_start();
-//$_SESSION['logged_in'] = false;
-//$_SESSION['account_type'] = 'seller';
+// FIXME: Replace with proper database validation in actual implementation
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap and FontAwesome CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/font-awsome-4.7.0.min.css">
-
-  <!-- Custom CSS file -->
-  <link rel="stylesheet" href="css/custom.css">
-  
-  <!--CHANGEME!-->
-  <title>Group 28 Auction Website</title>
+  <!-- Tailwind and FontAwesome -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a2d9d6d52f.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    @keyframes line {
+      from { width: 100%; }
+      to { width: 0; }
+    }
+    .notification-line {
+      animation: line 5s linear forwards;
+    }
+  </style>
+  <title>webbnya izza - lelang</title>
 </head>
 
+<body class="bg-gray-50">
+  <!-- Navbar -->
+  <nav class="bg-white z-50 shadow fixed w-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <!-- Brand -->
+          
+          <!-- Desktop Navigation -->
+          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <a href="browse.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+              Browse
+            </a>
+            <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == '1') { ?>
+              <!-- Buyer Links -->
+              <a href="mybids.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                My Bids
+              </a>
+              <a href="watchlist.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                Watchlist
+              </a>
+              <a href="recommendations.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                Recommended
+              </a>
+              <a href="won_auctions.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                Won Auctions
+              </a>
+            <?php } ?>
 
-<body>
-
-  <!-- Navbars -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mx-2">
-    <a class="navbar-brand" href="dashboard.php">Group 28 Auction Website </a><!--CHANGEME!-->
-  </nav>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <ul class="navbar-nav align-middle">
-      <li class="nav-item mx-1">
-        <a class="nav-link" href="browse.php">Browse</a>
-      </li>
-      <?php
-      if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == '1') {
-        echo ('
-	<li class="nav-item mx-1">
-      <a class="nav-link" href="mybids.php">My Bids</a>
-    </li>
-  <li class="nav-item mx-1">
-      <a class="nav-link" href="watchlist.php">Watchlist</a>
-    </li>
-	<li class="nav-item mx-1">
-      <a class="nav-link" href="recommendations.php">Recommended</a>
-    </li>
-  <li class="nav-item mx-1">
-      <a class="nav-link" href="won_auctions.php">My Won Auctions</a>
-    </li>');
-      }
-      if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == '0') {
-        echo ('
-	<li class="nav-item mx-1">
-      <a class="nav-link" href="mylistings.php">My Listings</a>
-    </li>
-	<li class="nav-item ml-3">
-      <a class="nav-link btn border-light" href="create_auction.php">+ Create auction</a>
-    </li>');
-      }
-      ?>
-    </ul>
-
-    <ul class="navbar-nav ml-auto">
-      <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) { ?>
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="photos/user.png" alt="Profile Avatar" class="avatar-img">
-          </a>
-          <ul class="dropdown-menu dropdown-menu-right">
-           <a class="dropdown-item" href="#">Profile</a>
-            <!-- <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="logout.php">Logout</a>
-
-          </ul>
-        </li> -->
-        <a href='logout.php' class='btn btn-link btn-sm'>Logout</a>
-      <?php } else { ?>
-    </ul>
-    <button type="button" class="btn nav-link" data-toggle="modal" data-target="#loginModal">Login</button>
-  <?php } ?>
-  </nav>
-  <!-- Login modal -->
-  <div class="modal fade" id="loginModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Login</h4>
+            <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == '0') { ?>
+              <!-- Seller Links -->
+              <a href="mylistings.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                My Listings
+              </a>
+              <a href="create_auction.php" class="ml-3 px-3 py-2 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+                + Create Auction
+              </a>
+            <?php } ?>
+          </div>
         </div>
 
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <form method="POST" action="login_result.php">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="text" class="form-control" id="email" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary form-control">Sign in</button>
-          </form>
-          <div class="text-center">or <a href="register.php">create an account</a></div>
+        <!-- Right Section -->
+        <div class="flex items-center">
+          <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) { ?>
+            <a href="logout.php" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+              Logout
+            </a>
+          <?php } else { ?>
+            <a href="login.php" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
+              Login
+            </a>
+          <?php } ?>
         </div>
-
       </div>
     </div>
-  </div>
-  <!-- End modal -->
+
+    <!-- Mobile Menu -->
+    <div class="sm:hidden">
+      <div class="pt-2 pb-3 space-y-1">
+        <a href="browse.php" class="bg-gray-50 border-indigo-500 text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+          Browse
+        </a>
+        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == '1') { ?>
+          <!-- Buyer Mobile Links -->
+          <a href="mybids.php" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+            My Bids
+          </a>
+          <a href="watchlist.php" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+            Watchlist
+          </a>
+          <a href="recommendations.php" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+            Recommended
+          </a>
+          <a href="won_auctions.php" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+            Won Auctions
+          </a>
+        <?php } ?>
+
+        <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == '0') { ?>
+          <!-- Seller Mobile Links -->
+          <a href="mylistings.php" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+            My Listings
+          </a>
+          <a href="create_auction.php" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
+            + Create Auction
+          </a>
+        <?php } ?>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Spacer for fixed navbar -->
+  <div class="h-16"></div>
+
+  <?php if(isset($_GET['message'])): ?>
+    <!-- Notification -->
+    <div id="notification" class="fixed bottom-4 right-4 w-80 bg-green-50 rounded-lg shadow-lg border border-green-200 overflow-hidden transition-opacity duration-300">
+      <div class="p-4">
+        <div class="flex justify-between items-center">
+          <p class="text-green-700 text-sm">
+            <?= htmlspecialchars($_GET['message']) ?>
+          </p>
+          <button onclick="dismissNotification()" 
+                  class="text-green-700 hover:text-green-900 focus:outline-none border-green-400 border px-2 rouded-md">
+            Tutup
+          </button>
+        </div>
+      </div>
+      <div class="h-1 bg-green-200">
+        <div class="notification-line h-full bg-green-500"></div>
+      </div>
+    </div>
+
+    <script>
+      // Function to dismiss notification
+      function dismissNotification() {
+        const notification = document.getElementById('notification');
+        notification.classList.add('opacity-0');
+        setTimeout(() => {
+          notification.remove();
+        }, 300);
+      }
+
+      // Auto dismiss after 5 seconds (5000ms)
+      setTimeout(() => {
+        dismissNotification();
+      }, 5000);
+    </script>
+  <?php endif; ?>
+</body>
+</html>

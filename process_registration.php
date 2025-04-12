@@ -128,12 +128,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     } else {
-        echo '<div class="alert alert-danger mt-3" role="alert">Error: Registration failed.</div>';
+        header("location: admin_users.php?message=registrasi gagal");
     }
 
     // Close the database connection
     db_disconnect($connection);
-    header("location: admin_user.php");
+    header("location: admin_users.php");
 }
 
 
