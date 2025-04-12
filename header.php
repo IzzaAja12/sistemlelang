@@ -1,6 +1,10 @@
 <?php
 session_start();
 // FIXME: Replace with proper database validation in actual implementation
+
+if(!isset($_SESSION['user'])){
+  header("location: login.php");
+}
 ?>
 <!doctype html>
 <html lang="en">

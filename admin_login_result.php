@@ -26,6 +26,7 @@ if (db_num_rows($result) === 1) {
     // Login successful
     $_SESSION['logged_in'] = true;
     $_SESSION['email'] = $email;
+    $_SESSION['admin'] = true;
 
     // TODO: Set 'account_type' or other session variables as needed
     $_SESSION['admin_id'] = $user['admin_id'];
