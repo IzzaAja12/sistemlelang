@@ -36,10 +36,10 @@
         <!-- Left: Navigation -->
         <div class="flex space-x-4">
           <a href="admin_users.php" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">
-            Users
+            User
           </a>
           <a href="admin_auctions.php" class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium">
-            Auctions
+            Lelang
           </a>
         </div>
 

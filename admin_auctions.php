@@ -22,7 +22,7 @@ $result = db_query($connection, $query);
 <body class="bg-gray-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="sm:flex sm:items-center sm:justify-between mb-6">
-      <h1 class="text-2xl font-bold text-gray-900">Auction Management</h1>
+      <h1 class="text-2xl font-bold text-gray-900">Manajemen Lelang</h1>
       <div class="mt-4 sm:mt-0">
      
       </div>
@@ -33,10 +33,10 @@ $result = db_query($connection, $query);
         <thead class="bg-gray-50">
           <tr>
             <th scope="col" class="py-3.5 px-4 text-left text-sm font-semibold text-gray-900">ID</th>
-            <th scope="col" class="py-3.5 px-4 text-left text-sm font-semibold text-gray-900">Title</th>
-            <th scope="col" class="py-3.5 px-4 text-left text-sm font-semibold text-gray-900">Item Name</th>
-            <th scope="col" class="py-3.5 px-4 text-left text-sm font-semibold text-gray-900">End Time</th>
-            <th scope="col" class="py-3.5 px-4 text-right text-sm font-semibold text-gray-900">Action</th>
+            <th scope="col" class="py-3.5 px-4 text-left text-sm font-semibold text-gray-900">Judul</th>
+            <th scope="col" class="py-3.5 px-4 text-left text-sm font-semibold text-gray-900">Nama Barang</th>
+            <th scope="col" class="py-3.5 px-4 text-left text-sm font-semibold text-gray-900">Batas Waktu</th>
+            <th scope="col" class="py-3.5 px-4 text-right text-sm font-semibold text-gray-900">Aksi</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-200 bg-white">
@@ -47,11 +47,15 @@ $result = db_query($connection, $query);
               <td class="whitespace-nowrap py-4 px-4 text-sm text-gray-500"><?php echo $row['name']; ?></td>
               <td class="whitespace-nowrap py-4 px-4 text-sm text-gray-500"><?php echo $row['end_time']; ?></td>
               <td class="whitespace-nowrap py-4 px-4 text-sm text-right">
-                
-                <a href="admin_delete_auction.php?auction_id=<?php echo $row['auction_id']; ?>" onclick="return confirm('Are you sure you want to delete this auction?');" class="ml-2 inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                  Delete
-                </a>
-              </td>
+  <form action="admin_auction_result.php" method="post" onsubmit="return confirm('Yakin ingin menghapus lelang ini?');" style="display:inline;">
+    <input type="hidden" name="auction_id" value="<?php echo $row['auction_id']; ?>">
+    <input type="hidden" name="action" value="delete">
+    <button type="submit" class="ml-2 inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+      Hapus
+    </button>
+  </form>
+</td>
+
             </tr>
           <?php } ?>
           

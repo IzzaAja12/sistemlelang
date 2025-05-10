@@ -12,7 +12,7 @@ if (!$has_session) {
 ?>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-  <h2 class="text-3xl font-bold text-gray-900 mb-6">My Bids</h2>
+  <h2 class="text-3xl font-bold text-gray-900 mb-6">Bid saya</h2>
 
   <?php
   $user_id = $_SESSION['user_id'];
@@ -49,8 +49,8 @@ if (!$has_session) {
   // Check if bids exist
   if (db_num_rows($auction_result) == 0) {
     echo '<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 text-center text-yellow-700">
-            <p class="text-lg font-medium">You have not placed any bids yet.</p>
-            <a href="browse.php" class="mt-4 inline-block px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition duration-150">Browse Auctions</a>
+            <p class="text-lg font-medium">Anda belum mengajukan tawaran apa pun.</p>
+            <a href="browse.php" class="mt-4 inline-block px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition duration-150">Telusuri Lelang</a>
           </div>';
     db_disconnect($connection);
     exit;
@@ -118,22 +118,22 @@ if (!$has_session) {
             <div class="mt-4 md:mt-0 md:ml-6 md:w-72 flex-shrink-0">
               <div class="bg-gray-50 rounded-lg p-4 border border-gray-100">
                 <div class="mb-2">
-                  <span class="block text-sm text-gray-500">Your Bid</span>
-                  <span class="text-2xl font-bold text-gray-900">£<?php echo number_format($bid_price, 2); ?></span>
+                  <span class="block text-sm text-gray-500">Bid Anda</span>
+                  <span class="text-2xl font-bold text-gray-900">Rp <?php echo number_format($bid_price, 2); ?></span>
                 </div>
                 
                 <div class="text-sm text-gray-500 mb-2">
-                  <span>Placed on <?php echo date("F j, Y, g:i a", strtotime($bid_time)); ?></span>
+                  <span>Dipasang pada <?php echo date("F j, Y, g:i a", strtotime($bid_time)); ?></span>
                 </div>
                 
                 <div class="grid grid-cols-2 gap-2 text-sm mb-3">
                   <div>
-                    <span class="text-gray-500">Starting Price</span>
-                    <div class="font-medium">£<?php echo number_format($auction_starting_price, 2); ?></div>
+                    <span class="text-gray-500">Harga awal</span>
+                    <div class="font-medium">Rp <?php echo number_format($auction_starting_price, 2); ?></div>
                   </div>
                   <div>
-                    <span class="text-gray-500">Reserve Price</span>
-                    <div class="font-medium">£<?php echo number_format($auction_reserve_price, 2); ?></div>
+                    <span class="text-gray-500">Harga cadangan</span>
+                    <div class="font-medium">Rp <?php echo number_format($auction_reserve_price, 2); ?></div>
                   </div>
                 </div>
                 
@@ -144,11 +144,11 @@ if (!$has_session) {
                   
                   <?php if ($is_highest_bidder): ?>
                     <span class="px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
-                      Highest bid
+                      Bid Tertinggi
                     </span>
                   <?php else: ?>
                     <span class="px-3 py-1 text-xs font-medium bg-red-100 text-red-800 rounded-full">
-                      Not highest bid
+                      Bukan Bid Tertinggi
                     </span>
                   <?php endif; ?>
                 </div>
@@ -157,7 +157,7 @@ if (!$has_session) {
                   <div class="mt-3">
                     <form action="listing.php?item_id=<?php echo urlencode($item_id); ?>" method="post">
                       <button type="submit" class="w-full px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition duration-150">
-                        Place a New Bid
+                        Ajukan Penawaran Baru
                       </button>
                     </form>
                   </div>

@@ -135,7 +135,7 @@ $top_categories_result = db_query($connection, $top_categories_query);
       </div>
       
       <div class="mt-4">
-        <a href="categories.php" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">
+        <a href="admin_auctions.php" class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">
           Lihat semua kategori →
         </a>
       </div>

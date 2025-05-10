@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (db_query($connection, $query)) {
             echo "<div>Record updated successfully.</div>";
-            header("Refresh: 2; URL=admin_auctions.php");
+            header("Location: mylistings.php");
         } else {
             echo "Error updating record";
         }
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (db_query($connection, $query)) {
             echo "<div>Auction deleted successfully.</div>";
-            header("Refresh: 2; URL=admin_auctions.php");
+            header("Location: mylistings.php");
         } else {
             echo "Error deleting record:";
         }
@@ -54,5 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     db_disconnect($connection);
 } else {
     header("Location: admin_auctions.php");
+    exit;
+
 }
 ?>

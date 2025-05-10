@@ -109,7 +109,7 @@ if (isset($watchlist_result)) {
             <svg class="-ml-1 mr-2 h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
-            Add to watchlist
+            Tambahkan ke daftar pantauan
           </button>
         </div>
         <div id="watch_watching" class="<?php if (!$has_session || !$watching) echo 'hidden'; ?>">
@@ -119,13 +119,13 @@ if (isset($watchlist_result)) {
                 <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                 <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
               </svg>
-              Watching
+              Tampilkan
             </button>
             <button type="button" onclick="removeFromWatchlist()" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
               <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
               </svg>
-              Remove
+              Hapus 
             </button>
           </div>
         </div>
@@ -145,7 +145,7 @@ if (isset($watchlist_result)) {
       
       <div class="bg-white overflow-hidden shadow rounded-lg">
         <div class="px-4 py-5 sm:p-6">
-          <h3 class="text-lg font-medium text-gray-900 mb-4">Description</h3>
+          <h3 class="text-lg font-medium text-gray-900 mb-4">Deskripsi</h3>
           <div class="prose max-w-none text-gray-600">
             <?php echo htmlspecialchars($description); ?>
           </div>
@@ -172,20 +172,20 @@ if (isset($watchlist_result)) {
     </p>
 <?php else: ?>
     <!-- Tampilan saat lelang masih berjalan (untuk semua tipe akun) -->
-    <h3 class="text-lg font-medium text-gray-900 mb-4">Auction Details</h3>
+    <h3 class="text-lg font-medium text-gray-900 mb-4">Detail lelang</h3>
     <p class="text-sm text-gray-500 mb-2">
-        Ends: <?php echo date_format($end_time, 'j M H:i') . $time_remaining ?>
+        Berakhir: <?php echo date_format($end_time, 'j M H:i') . $time_remaining ?>
     </p>
     <p class="text-sm text-gray-500 mb-4">
         Total bids: <?php echo $num_bids ?>
     </p>
     <p class="text-2xl font-bold text-indigo-600 mb-6">
-        Current Price: £<?php echo number_format($current_price, 2) ?>
+        Harga saat ini: Rp <?php echo number_format($current_price, 2) ?>
     </p>
     
     <!-- Daftar penawar (untuk semua tipe akun) -->
     <div class="mb-6">
-        <h4 class="text-md font-medium text-gray-900 mb-2">Top Bidders:</h4>
+        <h4 class="text-md font-medium text-gray-900 mb-2">Penawar Tertinggi:</h4>
         <?php
         $bidders_query = "SELECT u.first_name, u.last_name, b.price, b.time_of_bid 
                          FROM Bids b
@@ -201,14 +201,14 @@ if (isset($watchlist_result)) {
                 echo '<li class="py-2">';
                 echo '<div class="flex justify-between">';
                 echo '<span>' .htmlspecialchars($bidder['first_name']).' '.htmlspecialchars($bidder['last_name']). '</span>';
-                echo '<span class="font-medium">£'.number_format($bidder['price'], 2).'</span>';
+                echo '<span class="font-medium">Rp '.number_format($bidder['price'], 2).'</span>';
                 echo '</div>';
                 echo '<div class="text-xs text-gray-500">'.date('j M H:i', strtotime($bidder['time_of_bid'])).'</div>';
                 echo '</li>';
             }
             echo '</ul>';
         } else {
-            echo '<p class="text-gray-500 text-sm">No bids yet</p>';
+            echo '<p class="text-gray-500 text-sm">Belum ada tawaran</p>';
         }
         ?>
     </div>
@@ -218,11 +218,11 @@ if (isset($watchlist_result)) {
         <form method="POST" action="place_bid.php" class="space-y-4">
             <div class="mt-1 relative rounded-md shadow-sm">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <span class="text-gray-500 sm:text-sm">£</span>
+                    <span class="text-gray-500 sm:text-sm">Rp </span>
                 </div>
                 <input type="number" name="bid" id="bid" step="0.01" min="<?php echo $current_price + 0.01; ?>" 
                      class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
-                     placeholder="Enter your bid" required>
+                     placeholder="  Masukkan tawaran Anda" required>
             </div>
             <input type="hidden" name="auction_id" value="<?php echo $auction_id ?>">
             <input type="hidden" name="current_price" value="<?php echo $current_price ?>">

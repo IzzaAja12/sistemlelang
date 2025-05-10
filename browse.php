@@ -4,8 +4,8 @@
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
   <div class="mb-8">
-    <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Browse Listings</h1>
-    <p class="mt-2 text-sm text-gray-500">Find the perfect items from our extensive collection</p>
+    <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Telusuri Daftar</h1>
+    <p class="mt-2 text-sm text-gray-500">Temukan item yang sempurna dari koleksi lengkap kami</p>
   </div>
 
   <!-- Search Form -->
@@ -13,23 +13,23 @@
     <form method="get" action="browse.php" class="space-y-4 md:space-y-0 md:grid md:grid-cols-12 md:gap-4">
       <!-- Keyword Search -->
       <div class="md:col-span-5">
-        <label for="keyword" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+        <label for="keyword" class="block text-sm font-medium text-gray-700 mb-1">Cari</label>
         <div class="relative rounded-md shadow-sm">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <i class="fas fa-search text-gray-400"></i>
           </div>
           <input type="text" name="keyword" id="keyword" 
                  class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 text-gray-900" 
-                 placeholder="Search for anything" value="<?php echo htmlspecialchars($_GET['keyword'] ?? ''); ?>">
+                 placeholder="Cari apa saja" value="<?php echo htmlspecialchars($_GET['keyword'] ?? ''); ?>">
         </div>
       </div>
 
       <!-- Category Filter -->
       <div class="md:col-span-3">
-        <label for="cat" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+        <label for="cat" class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
         <select class="block w-full py-3 px-4 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" 
                 name="cat" id="cat">
-          <option value="all" <?php echo (!isset($_GET['cat']) || $_GET['cat'] === 'all' ? 'selected' : '') ?>>All categories</option>
+          <option value="all" <?php echo (!isset($_GET['cat']) || $_GET['cat'] === 'all' ? 'selected' : '') ?>>Semua kategori</option>
           <?php
             $connection = db_connect();
             $categories = "SELECT DISTINCT category FROM item";
@@ -47,19 +47,19 @@
 
       <!-- Sort Options -->
       <div class="md:col-span-3">
-        <label for="order_by" class="block text-sm font-medium text-gray-700 mb-1">Sort by</label>
+        <label for="order_by" class="block text-sm font-medium text-gray-700 mb-1">Urutkan menurut</label>
         <select class="block w-full py-3 px-4 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" 
                 name="order_by" id="order_by">
-          <option value="pricelow" <?php echo (!isset($_GET['order_by']) || $_GET['order_by'] === 'pricelow') ? 'selected' : ''; ?>>Price (low to high)</option>
-          <option value="pricehigh" <?php echo isset($_GET['order_by']) && $_GET['order_by'] === 'pricehigh' ? 'selected' : ''; ?>>Price (high to low)</option>
-          <option value="date" <?php echo isset($_GET['order_by']) && $_GET['order_by'] === 'date' ? 'selected' : ''; ?>>Soonest expiry</option>
+          <option value="pricelow" <?php echo (!isset($_GET['order_by']) || $_GET['order_by'] === 'pricelow') ? 'selected' : ''; ?>>Harga (rendah ke tinggi)</option>
+          <option value="pricehigh" <?php echo isset($_GET['order_by']) && $_GET['order_by'] === 'pricehigh' ? 'selected' : ''; ?>>Harga (tinggi ke rendah)</option>
+          <option value="date" <?php echo isset($_GET['order_by']) && $_GET['order_by'] === 'date' ? 'selected' : ''; ?>>Batas paling cepat</option>
         </select>
       </div>
 
       <!-- Submit Button -->
       <div class="md:col-span-1 flex items-end">
         <button type="submit" class="w-full py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-150">
-          <i class="fas fa-search mr-1"></i> Search
+          <i class="fas fa-search mr-1"></i> Cari
         </button>
       </div>
     </form>
@@ -133,16 +133,16 @@
     <?php if (db_num_rows($search_results) == 0): ?>
       <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
         <i class="fas fa-search text-blue-500 text-4xl mb-3"></i>
-        <h3 class="text-lg font-medium text-blue-800 mb-1">No matching results found</h3>
-        <p class="text-blue-600">Try adjusting your search criteria or browse all categories</p>
+        <h3 class="text-lg font-medium text-blue-800 mb-1">Tidak ditemukan hasil yang cocok</h3>
+        <p class="text-blue-600">Coba sesuaikan kriteria pencarian Anda atau telusuri semua kategori</p>
       </div>
     <?php else: ?>
       <!-- Results Count -->
       <div class="flex justify-between items-center mb-4">
         <p class="text-sm text-gray-500">
-          Showing <?php echo min(($curr_page - 1) * $results_per_page + 1, $total_items); ?> - 
+          Tampilkan <?php echo min(($curr_page - 1) * $results_per_page + 1, $total_items); ?> - 
           <?php echo min($curr_page * $results_per_page, $total_items); ?> of 
-          <?php echo $total_items; ?> results
+          <?php echo $total_items; ?> Hasil
         </p>
       </div>
       
@@ -173,8 +173,8 @@
                 
                 <div class="flex flex-wrap gap-6 text-sm">
                   <div>
-                    <span class="font-medium text-gray-500">Current bid:</span>
-                    <span class="text-lg font-bold text-gray-900 ml-1">$<?php echo number_format($current_price, 2); ?></span>
+                    <span class="font-medium text-gray-500">Tawaran Saat Ini:</span>
+                    <span class="text-lg font-bold text-gray-900 ml-1">Rp <?php echo number_format($current_price, 2); ?></span>
                   </div>
                   
                   <div>

@@ -33,13 +33,13 @@ if (isset($_GET['auction_id'])) {
 
 <div class="max-w-4xl mx-auto px-4 py-8">
   <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-100">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6">Edit Auction</h1>
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Edit lelang</h1>
     
     <form action="admin_auction_result.php" method="post" class="space-y-6">
       <input type="hidden" name="auction_id" value="<?php echo $auction['auction_id']; ?>">
 
       <div class="space-y-2">
-        <label for="auction_title" class="block text-sm font-medium text-gray-700">Auction Title</label>
+        <label for="auction_title" class="block text-sm font-medium text-gray-700">Judul lelang</label>
         <input type="text" 
                class="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm" 
                name="auction_title" 
@@ -49,7 +49,7 @@ if (isset($_GET['auction_id'])) {
       </div>
 
       <div class="space-y-2">
-        <label for="item_name" class="block text-sm font-medium text-gray-700">Item Name</label>
+        <label for="item_name" class="block text-sm font-medium text-gray-700">Nama barang</label>
         <input type="text" 
                class="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm" 
                name="item_name" 
@@ -59,7 +59,7 @@ if (isset($_GET['auction_id'])) {
       </div>
 
       <div class="space-y-2">
-        <label for="end_time" class="block text-sm font-medium text-gray-700">End Time</label>
+        <label for="end_time" class="block text-sm font-medium text-gray-700">Waktu berakhir</label>
         <input type="datetime-local" 
                class="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm" 
                name="end_time" 
@@ -73,14 +73,14 @@ if (isset($_GET['auction_id'])) {
                 name="action" 
                 value="update" 
                 class="px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition duration-150">
-          Update Auction
+          Update lelang
         </button>
         <button type="submit" 
                 name="action" 
                 value="delete" 
                 class="px-6 py-3 bg-red-600 text-white font-medium rounded-lg shadow hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-150"
                 onclick="return confirm('Are you sure you want to delete this auction?');">
-          Delete Auction
+          Hapus lelang
         </button>
       </div>
     </form>

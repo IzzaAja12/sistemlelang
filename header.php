@@ -26,7 +26,7 @@ if(!isset($_SESSION['user'])){
       animation: line 5s linear forwards;
     }
   </style>
-  <title>webbnya izza - lelang</title>
+  <title>Tugas</title>
 </head>
 
 <body class="bg-gray-50">
@@ -40,31 +40,31 @@ if(!isset($_SESSION['user'])){
           <!-- Desktop Navigation -->
           <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
             <a href="browse.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-              Browse
+              Telusuri
             </a>
             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == '1') { ?>
               <!-- Buyer Links -->
               <a href="mybids.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                My Bids
+                Bid Saya
               </a>
               <a href="watchlist.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Watchlist
+                Daftar Pantauan
               </a>
               <a href="recommendations.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Recommended
+                Direkomendasikan
               </a>
               <a href="won_auctions.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                Won Auctions
+                Lelang Yang Dimenangkan
               </a>
             <?php } ?>
 
             <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == '0') { ?>
               <!-- Seller Links -->
               <a href="mylistings.php" class="border-transparent text-gray-500 hover:border-indigo-500 hover:text-indigo-600 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                My Listings
+                Daftar Saya
               </a>
               <a href="create_auction.php" class="ml-3 px-3 py-2 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                + Create Auction
+                + Buat Lelang
               </a>
             <?php } ?>
           </div>
@@ -89,21 +89,21 @@ if(!isset($_SESSION['user'])){
     <div class="sm:hidden">
       <div class="pt-2 pb-3 space-y-1">
         <a href="browse.php" class="bg-gray-50 border-indigo-500 text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-          Browse
+          Telusuri
         </a>
         <?php if (isset($_SESSION['account_type']) && $_SESSION['account_type'] == '1') { ?>
           <!-- Buyer Mobile Links -->
           <a href="mybids.php" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-            My Bids
+            Bid Saya
           </a>
           <a href="watchlist.php" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-            Watchlist
+            Daftar Pantauan
           </a>
           <a href="recommendations.php" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-            Recommended
+            Direkomendasikan
           </a>
           <a href="won_auctions.php" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-indigo-500 hover:text-indigo-600 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">
-            Won Auctions
+            Lelang Yang Dimenangkan
           </a>
         <?php } ?>
 

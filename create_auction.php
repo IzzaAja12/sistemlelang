@@ -14,8 +14,8 @@
   <div class="max-w-4xl mx-auto px-4">
     <!-- Header Section -->
     <div class="text-center mb-10">
-      <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Create New Auction</h2>
-      <p class="mt-3 text-lg text-gray-600">Fill in the details below to list your item for auction</p>
+      <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Buat Lelang Baru</h2>
+      <p class="mt-3 text-lg text-gray-600">Isi rincian di bawah ini untuk mendaftarkan barang Anda untuk dilelang</p>
     </div>
     
     <!-- Main Form Card -->
@@ -28,17 +28,17 @@
             <div class="flex justify-between items-center">
               <div class="flex flex-col items-center">
                 <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">1</div>
-                <p class="mt-2 text-sm font-medium text-blue-600">Item Details</p>
+                <p class="mt-2 text-sm font-medium text-blue-600">Rincian Barang</p>
               </div>
               <div class="flex-1 h-1 bg-blue-200 mx-2"></div>
               <div class="flex flex-col items-center">
                 <div class="w-10 h-10 bg-blue-200 rounded-full flex items-center justify-center font-bold text-gray-600">2</div>
-                <p class="mt-2 text-sm font-medium text-gray-600">Pricing</p>
+                <p class="mt-2 text-sm font-medium text-gray-600">Harga</p>
               </div>
               <div class="flex-1 h-1 bg-blue-200 mx-2"></div>
               <div class="flex flex-col items-center">
                 <div class="w-10 h-10 bg-blue-200 rounded-full flex items-center justify-center font-bold text-gray-600">3</div>
-                <p class="mt-2 text-sm font-medium text-gray-600">Image</p>
+                <p class="mt-2 text-sm font-medium text-gray-600">Gambar</p>
               </div>
             </div>
           </div>
@@ -54,36 +54,36 @@
           ?>
             <!-- Item Information Section -->
             <div class="bg-blue-50 p-6 rounded-lg border border-blue-100">
-              <h3 class="text-xl font-bold text-gray-800 mb-6">Item Information</h3>
+              <h3 class="text-xl font-bold text-gray-800 mb-6">Informasi Barang</h3>
               
               <!-- Auction Title -->
               <div class="mb-6">
                 <label for="auctionTitle" class="block text-sm font-medium text-gray-700 mb-1">
-                  Title of auction <span class="text-red-600">*</span>
+                Judul lelang  <span class="text-red-600">*</span>
                 </label>
-                <input type="text" id="auctionTitle" name="auctionTitle" placeholder="e.g. Black mountain bike" 
+                <input type="text" id="auctionTitle" name="auctionTitle" placeholder="misalnya Sepeda gunung hitam" 
                       class="w-full py-3 px-4 rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                <p class="mt-1 text-sm text-gray-500">A short description of the item you're selling, which will display in listings.</p>
+                <p class="mt-1 text-sm text-gray-500">Deskripsi singkat barang yang Anda jual, yang akan ditampilkan dalam daftar.</p>
               </div>
               
               <!-- Item Name -->
               <div class="mb-6">
                 <label for="itemName" class="block text-sm font-medium text-gray-700 mb-1">
-                  Name of Item <span class="text-red-600">*</span>
+                Nama Barang <span class="text-red-600">*</span>
                 </label>
-                <input type="text" id="itemName" name="itemName" placeholder="e.g. insert item name" 
+                <input type="text" id="itemName" name="itemName" placeholder="misalnya masukkan nama barang" 
                       class="w-full py-3 px-4 rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                <p class="mt-1 text-sm text-gray-500">A name you wish to give your item.</p>
+                <p class="mt-1 text-sm text-gray-500">Nama yang ingin Anda berikan untuk barang Anda.</p>
               </div>
               
               <!-- Auction Details -->
               <div class="mb-6">
                 <label for="auctionDetails" class="block text-sm font-medium text-gray-700 mb-1">
-                  Details
+                Rincian
                 </label>
-                <textarea id="auctionDetails" name="auctionDetails" rows="4" placeholder="Describe your item in detail..." 
+                <textarea id="auctionDetails" name="auctionDetails" rows="4" placeholder="Jelaskan barang Anda secara terperinci..." 
                          class="w-full py-3 px-4 rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
-                <p class="mt-1 text-sm text-gray-500">Optional. Provide additional details about your item.</p>
+                <p class="mt-1 text-sm text-gray-500">Opsional. Berikan rincian tambahan tentang barang Anda.</p>
               </div>
               
               <!-- Two columns layout for shorter fields -->
@@ -91,29 +91,29 @@
                 <!-- Auction Category -->
                 <div>
                   <label for="auctionCategory" class="block text-sm font-medium text-gray-700 mb-1">
-                    Category
+                    Kategori
                   </label>
                   <select id="auctionCategory" name="auctionCategory" 
                          class="w-full py-3 px-4 rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    <option selected disabled>Choose...</option>
-                    <option value="Electronics">Electronics</option>
+                    <option selected disabled>Pilih...</option>
+                    <option value="Electronics">Elektronik</option>
                     <option value="Fashion">Fashion</option>
-                    <option value="Home">Home</option>
-                    <option value="Books">Books</option>
-                    <option value="Other">Other</option>
+                    <option value="Home">Rumah</option>
+                    <option value="Books">Buku</option>
+                    <option value="Other">Lainnya</option>
                   </select>
                 </div>
                 
                 <!-- Item Colour -->
                 <div>
                   <label for="itemColour" class="block text-sm font-medium text-gray-700 mb-1">
-                    Colour
+                    Warna
                   </label>
                   <select id="itemColour" name="itemColour" 
                          class="w-full py-3 px-4 rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    <option selected disabled>Choose...</option>
+                    <option selected disabled>Pilih...</option>
                     <?php
-                    $colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Pink', 'White', 'Grey', 'Black', 'Brown', 'Other'];
+                    $colors = ['Merah', 'Oranye', 'Kuning', 'Hijau', 'Biru', 'Ungu', 'Merah Muda', 'Putih', 'Abu-abu', 'Hitam', 'Cokelat', 'Lainnya'];
                     foreach ($colors as $color) {
                         echo "<option value=\"$color\">$color</option>";
                     }
@@ -124,76 +124,77 @@
                 <!-- Item Condition -->
                 <div>
                   <label for="itemCondition" class="block text-sm font-medium text-gray-700 mb-1">
-                    Condition <span class="text-red-600">*</span>
+                    Kondisi <span class="text-red-600">*</span>
                   </label>
                   <select id="itemCondition" name="itemCondition" 
                          class="w-full py-3 px-4 rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    <option selected disabled>Choose...</option>
-                    <option value="Great">Great</option>
-                    <option value="Good">Good</option>
-                    <option value="Okay">Okay</option>
-                    <option value="Poor">Poor</option>
+                    <option selected disabled>Pilih...</option>
+                    <option value="Great">Sangat Baik</option>
+                    <option value="Good">Baik</option>
+                    <option value="Okay">Cukup</option>
+                    <option value="Poor">Buruk</option>
+
                   </select>
-                  <p class="mt-1 text-sm text-gray-500">State the condition of the item.</p>
+                  <p class="mt-1 text-sm text-gray-500">Sebutkan kondisi barang.</p>
                 </div>
                 
                 <!-- End Date -->
                 <div>
                   <label for="auctionEndDate" class="block text-sm font-medium text-gray-700 mb-1">
-                    End date <span class="text-red-600">*</span>
+                    Tanggal Berakhir <span class="text-red-600">*</span>
                   </label>
                   <input type="datetime-local" id="auctionEndDate" name="auctionEndDate" 
                          class="w-full py-3 px-4 rounded-lg border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                  <p class="mt-1 text-sm text-gray-500">Day for the auction to end.</p>
+                  <p class="mt-1 text-sm text-gray-500">Hari berakhirnya lelang.</p>
                 </div>
               </div>
             </div>
             
             <!-- Pricing Section -->
             <div class="bg-green-50 p-6 rounded-lg border border-green-100">
-              <h3 class="text-xl font-bold text-gray-800 mb-6">Pricing Information</h3>
+              <h3 class="text-xl font-bold text-gray-800 mb-6">Informasi Harga</h3>
               
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Starting Price -->
                 <div>
                   <label for="auctionStartPrice" class="block text-sm font-medium text-gray-700 mb-1">
-                    Starting price <span class="text-red-600">*</span>
+                  Harga awal <span class="text-red-600">*</span>
                   </label>
                   <div class="mt-1 relative rounded-lg shadow-sm">
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <span class="text-gray-500">£</span>
+                      <span class="text-gray-500">Rp </span>
                     </div>
                     <input type="number" id="auctionStartPrice" name="auctionStartPrice" step="0.01" placeholder="0.00"
                            class="py-3 pl-10 pr-4 block w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500">
                   </div>
-                  <p class="mt-1 text-sm text-gray-500">Initial bid amount.</p>
+                  <p class="mt-1 text-sm text-gray-500">Jumlah tawaran awal.</p>
                 </div>
                 
                 <!-- Reserve Price -->
                 <div>
                   <label for="auctionReservePrice" class="block text-sm font-medium text-gray-700 mb-1">
-                    Reserve price
+                  Harga cadangan
                   </label>
                   <div class="mt-1 relative rounded-lg shadow-sm">
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <span class="text-gray-500">£</span>
+                      <span class="text-gray-500">Rp </span>
                     </div>
                     <input type="number" id="auctionReservePrice" name="auctionReservePrice" step="0.01" placeholder="0.00"
                            class="py-3 pl-10 pr-4 block w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500">
                   </div>
-                  <p class="mt-1 text-sm text-gray-500">Optional. Auctions that end below this price will not go through.</p>
+                  <p class="mt-1 text-sm text-gray-500">Opsional. Lelang yang berakhir di bawah harga ini tidak akan dilanjutkan.</p>
                 </div>
               </div>
             </div>
             
             <!-- Image Upload Section -->
             <div class="bg-purple-50 p-6 rounded-lg border border-purple-100">
-              <h3 class="text-xl font-bold text-gray-800 mb-6">Item Image</h3>
+              <h3 class="text-xl font-bold text-gray-800 mb-6">Gambar Barang</h3>
               
               <!-- Photo Upload with Preview -->
               <div>
                 <label for="uploadImage" class="block text-sm font-medium text-gray-700 mb-1">
-                  Upload Image <span class="text-red-600">*</span>
+                Unggah Gambar <span class="text-red-600">*</span>
                 </label>
                 <div class="mt-1 flex flex-col items-center">
                   <!-- Image Preview Area -->
@@ -234,7 +235,7 @@
           <!-- Submit Button -->
           <div class="mt-10">
             <button type="submit" class="w-full flex justify-center py-4 px-4 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out">
-              Create Auction
+              Buat Lelang
             </button>
           </div>
         </form>
@@ -244,25 +245,25 @@
     <!-- Tips Card -->
     <div class="mt-8 bg-white rounded-xl shadow-md overflow-hidden">
       <div class="p-6">
-        <h3 class="text-lg font-bold text-gray-800 mb-2">Tips for a successful auction</h3>
+        <h3 class="text-lg font-bold text-gray-800 mb-2">Tips untuk lelang yang sukses</h3>
         <ul class="space-y-2 text-gray-600">
           <li class="flex items-start">
             <svg class="h-5 w-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
             </svg>
-            Use high-quality photos that clearly show the item
+            Gunakan foto berkualitas tinggi yang memperlihatkan barang dengan jelas
           </li>
           <li class="flex items-start">
             <svg class="h-5 w-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
             </svg>
-            Write a detailed description with all relevant information
+            Tulis deskripsi terperinci dengan semua informasi yang relevan
           </li>
           <li class="flex items-start">
             <svg class="h-5 w-5 text-green-500 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
             </svg>
-            Set a competitive starting price to attract bidders
+            Tetapkan harga awal yang kompetitif untuk menarik penawar
           </li>
         </ul>
       </div>

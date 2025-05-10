@@ -12,7 +12,7 @@ if (!$has_session) {
 ?>
 
 <div class="max-w-7xl mx-auto px-4 py-8">
-  <h1 class="text-3xl font-bold text-gray-800 mb-6">My Listings</h1>
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Daftar saya</h1>
   
   <?php
   $user_id = $_SESSION['user_id'];
@@ -94,11 +94,11 @@ if (!$has_session) {
             <!-- Price and Time Info -->
             <div class="mt-4 md:mt-0 md:ml-6 md:text-right">
               <div class="text-lg font-medium text-gray-900">
-                <span class="text-sm font-normal text-gray-500">Starting Price</span><br>
-                £<?php echo number_format($auction_starting_price, 2); ?>
+                <span class="text-sm font-normal text-gray-500">Harga Awal</span><br>
+                Rp <?php echo number_format($auction_starting_price, 2); ?>
               </div>
               <div class="mt-2 text-sm text-gray-500">
-                Reserve: £<?php echo number_format($auction_reserve_price, 2); ?>
+                Reserve: Rp <?php echo number_format($auction_reserve_price, 2); ?>
               </div>
               <div class="mt-2 <?php echo $is_ended ? 'text-red-600' : 'text-green-600'; ?>">
                 <?php echo $time_remaining; ?>
@@ -109,7 +109,7 @@ if (!$has_session) {
           <!-- Action Buttons -->
           <div class="mt-4 flex space-x-3">
             <a href="listing.php?item_id=<?php echo $item_id; ?>" class="px-4 py-2 bg-indigo-100 text-indigo-700 rounded-md hover:bg-indigo-200 transition-colors">
-              View Listing
+              Lihat lelang
             </a>
             <a href="edit_auction.php?auction_id=<?php echo $auction_id; ?>" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors">
               Edit

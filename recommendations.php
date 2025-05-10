@@ -4,17 +4,17 @@
 
 <div class="max-w-7xl mx-auto px-4 py-8">
   <div class="flex items-center justify-between mb-6">
-    <h2 class="text-3xl font-bold text-gray-800">Recommendations for You</h2>
+    <h2 class="text-3xl font-bold text-gray-800">Rekomendasi Untukmu</h2>
     <div class="hidden sm:block">
       <i class="fas fa-lightbulb text-yellow-500 text-xl mr-2"></i>
-      <span class="text-gray-600 text-sm">Based on your interests</span>
+      <span class="text-gray-600 text-sm">Berdasarkan minat Anda</span>
     </div>
   </div>
 
   <div class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-lg p-4 mb-8 shadow-sm border border-indigo-100">
     <div class="flex items-center">
       <i class="fas fa-info-circle text-indigo-500 mr-3 text-lg"></i>
-      <p class="text-gray-700">Items recommended based on what other users with similar interests are watching</p>
+      <p class="text-gray-700">Item yang direkomendasikan berdasarkan apa yang ditonton</p>
     </div>
   </div>
 
@@ -70,25 +70,24 @@
     ?>
       <div class="bg-white rounded-lg shadow-md p-8 text-center border border-gray-200">
         <i class="fas fa-search text-gray-400 text-5xl mb-4"></i>
-        <h3 class="text-xl font-semibold text-gray-700 mb-2">No Recommendations Available</h3>
-        <p class="text-gray-600 mb-4">We don't have any recommendations for you yet. This could be because:</p>
+        <h3 class="text-xl font-semibold text-gray-700 mb-2">Tidak Ada Rekomendasi yang Tersedia</h3>
         <ul class="text-left text-gray-600 max-w-md mx-auto space-y-2 mb-6">
           <li class="flex items-start">
             <i class="fas fa-circle text-xs text-gray-400 mt-1.5 mr-2"></i>
-            <span>You haven't added items to your watchlist</span>
+            <span> </span>
           </li>
           <li class="flex items-start">
             <i class="fas fa-circle text-xs text-gray-400 mt-1.5 mr-2"></i>
-            <span>Not enough users with similar interests</span>
+            <span> </span>
           </li>
           <li class="flex items-start">
             <i class="fas fa-circle text-xs text-gray-400 mt-1.5 mr-2"></i>
-            <span>You might want to explore more categories</span>
+            <span> </span>
           </li>
         </ul>
         <a href="browse.php" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors duration-150">
           <i class="fas fa-search mr-2"></i>
-          Browse Items
+          Telusuri Item
         </a>
       </div>
     <?php
@@ -113,7 +112,7 @@
   <!-- No results found illustration -->
   <?php if ($num_results == 0): ?>
     <div class="flex justify-center mt-8">
-      no recommendations found
+     
     </div>
   <?php endif; ?>
 </div>

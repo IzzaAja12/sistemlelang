@@ -3,7 +3,7 @@
 <?php require("database.php")?>
 
 <div class="max-w-7xl mx-auto px-4 py-8">
-  <h2 class="text-3xl font-bold text-gray-800 mb-6">Auctions I've Won</h2>
+  <h2 class="text-3xl font-bold text-gray-800 mb-6">Lelang yang Saya Menangkan</h2>
 
   <?php
     $has_session = isset($_SESSION['logged_in']) && $_SESSION['logged_in'];
@@ -97,7 +97,7 @@
 
   <?php if ($num_results == 0): ?>
     <div class="bg-blue-50 border border-blue-200 text-blue-800 px-6 py-4 rounded-lg text-center">
-      <p class="text-lg">You haven't won any auctions yet</p>
+      <p class="text-lg">Anda belum memenangkan lelang apa pun</p>
     </div>
   <?php else: ?>
     <ul class="space-y-4">
@@ -143,8 +143,8 @@
               <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
                 <!-- Bid Info -->
                 <div class="mb-4 md:mb-0">
-                  <p class="text-sm text-gray-500">Your Winning Bid:</p>
-                  <p class="text-2xl font-bold text-green-600">£<?php echo number_format($your_bid, 2); ?></p>
+                  <p class="text-sm text-gray-500">Kamu Pemenang Lelang:</p>
+                  <p class="text-2xl font-bold text-green-600">Rp <?php echo number_format($your_bid, 2); ?></p>
                 </div>
                 
                 <!-- Rating Section -->
@@ -168,7 +168,7 @@
                     </form>
                   <?php else: ?>
                     <div class="text-center">
-                      <p class="text-sm font-medium text-gray-700">Your Rating:</p>
+                      <p class="text-sm font-medium text-gray-700">Ratting Penjual:</p>
                       <div class="flex items-center justify-center mt-1">
                         <?php 
                           $seller_rating = getUserRating($user_id, $seller_id, $item_id);
